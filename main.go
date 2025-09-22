@@ -13,9 +13,10 @@ import (
 )
 
 type PageData struct {
-	Content string
-	AppID   string
-	PodID   string
+	Content  string
+	AppID    string
+	PodID    string
+	Instance string
 }
 
 func main() {
@@ -39,9 +40,10 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 	content := loadContent()
 
 	data := PageData{
-		Content: content,
-		AppID:   os.Getenv("BUNNYNET_MC_APPID"),
-		PodID:   os.Getenv("BUNNYNET_MC_PODID"),
+		Content:  content,
+		AppID:    os.Getenv("BUNNYNET_MC_APPID"),
+		PodID:    os.Getenv("BUNNYNET_MC_PODID"),
+		Instance: os.Getenv("BUNNY_CUSTOM_TITLE"),
 	}
 
 	tmpl := template.Must(template.ParseFiles("templates/index.html"))
